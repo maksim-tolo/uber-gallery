@@ -1,27 +1,39 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import './App.css';
 import PicturesSelect from '../../components/PicturesSelect';
+import PicturesList from '../../components/PicturesList';
+import { savePictures } from './actions';
+import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.handleSelect = this.handleSelect.bind(this);
-  }
-
-  handleSelect(files) {
-    debugger;
-    console.log(files);
-  }
-
   render() {
     return (
       <div className="App">
-        <PicturesSelect onSelect={this.handleSelect} />
+        <PicturesSelect onSelect={this.props.onSelect} />
+        <PicturesList pictures={this.props.pictures} />
       </div>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+  onSelect: PropTypes.func.isRequired,
+  pictures: PropTypes.array.isRequired
+};
+
+const mapStateToProps = ({ pictures }) => {
+  return { pictures };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSelect: (files) => dispatch(savePictures(files))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
