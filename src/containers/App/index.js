@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 
 import PicturesSelect from '../../components/PicturesSelect';
 import PicturesList from '../../components/PicturesList';
-import { savePictures } from './actions';
+import {
+  savePictures,
+  increasePictureRating,
+  decreasePictureRating
+} from './actions';
 import './App.css';
 
 class App extends Component {
@@ -12,7 +16,9 @@ class App extends Component {
     return (
       <div className="App">
         <PicturesSelect onSelect={this.props.onSelect} />
-        <PicturesList pictures={this.props.pictures} />
+        <PicturesList pictures={this.props.pictures}
+                      onLeftClick={this.props.onLeftClick}
+                      onRightClick={this.props.onRightClick} />
       </div>
     );
   }
@@ -20,6 +26,8 @@ class App extends Component {
 
 App.propTypes = {
   onSelect: PropTypes.func.isRequired,
+  onLeftClick: PropTypes.func.isRequired,
+  onRightClick: PropTypes.func.isRequired,
   pictures: PropTypes.array.isRequired
 };
 
@@ -29,7 +37,9 @@ const mapStateToProps = ({ pictures }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSelect: (files) => dispatch(savePictures(files))
+    onSelect: (files) => dispatch(savePictures(files)),
+    onLeftClick: (pictureUrl) => dispatch(increasePictureRating(pictureUrl)),
+    onRightClick: (pictureUrl) => dispatch(decreasePictureRating(pictureUrl)),
   };
 };
 

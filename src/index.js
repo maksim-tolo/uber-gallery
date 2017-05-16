@@ -1,3 +1,5 @@
+import 'core-js/fn/array/from';
+import 'core-js/fn/array/find-index';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import thunkMiddleware from 'redux-thunk';

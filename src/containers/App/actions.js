@@ -1,5 +1,4 @@
 import localForage from 'localforage';
-import 'core-js/fn/array/from';
 
 import {
   PICTURES_DB_KEY,
@@ -9,7 +8,9 @@ import {
   SAVE_PICTURES_TO_DB_FAILURE,
   LOAD_PICTURES_FROM_DB_START,
   LOAD_PICTURES_FROM_DB_SUCCESS,
-  LOAD_PICTURES_FROM_DB_FAILURE
+  LOAD_PICTURES_FROM_DB_FAILURE,
+  INCREASE_PICTURE_RATING,
+  DECREASE_PICTURE_RATING
 } from './constants';
 
 function getUrlsToFiles(files) {
@@ -29,45 +30,59 @@ export function savePicturesToSession(pictures) {
   return {
     type: SAVE_PICTURES_TO_SESSION,
     picturesUrls: getUrlsToFiles(pictures)
-  }
+  };
 }
 
 export function savePicturesToDBStart() {
   return {
     type: SAVE_PICTURES_TO_DB_START
-  }
+  };
 }
 
 export function savePicturesToDBSuccess() {
   return {
     type: SAVE_PICTURES_TO_DB_SUCCESS
-  }
+  };
 }
 
 export function savePicturesToDBFailure(error) {
   return {
     error,
     type: SAVE_PICTURES_TO_DB_FAILURE
-  }
+  };
 }
 
 export function loadPicturesFromDBStart() {
   return {
     type: LOAD_PICTURES_FROM_DB_START
-  }
+  };
 }
 
 export function loadPicturesFromDBSuccess() {
   return {
     type: LOAD_PICTURES_FROM_DB_SUCCESS
-  }
+  };
 }
 
 export function loadPicturesFromDBFailure(error) {
   return {
     error,
     type: LOAD_PICTURES_FROM_DB_FAILURE
-  }
+  };
+}
+
+export function increasePictureRating(pictureUrl) {
+  return {
+    pictureUrl,
+    type: INCREASE_PICTURE_RATING
+  };
+}
+
+export function decreasePictureRating(pictureUrl) {
+  return {
+    pictureUrl,
+    type: DECREASE_PICTURE_RATING
+  };
 }
 
 export function savePicturesToDB(pictures) {
@@ -81,7 +96,7 @@ export function savePicturesToDB(pictures) {
     } catch (error) {
       return dispatch(savePicturesToDBFailure(error));
     }
-  }
+  };
 }
 
 export function loadPicturesFromDB() {
@@ -99,7 +114,7 @@ export function loadPicturesFromDB() {
     }
 
     return pictures || [];
-  }
+  };
 }
 
 export function savePictures(pictures) {
@@ -107,7 +122,7 @@ export function savePictures(pictures) {
     dispatch(savePicturesToDB(pictures));
 
     return dispatch(savePicturesToSession(pictures));
-  }
+  };
 }
 
 export function loadPictures() {
@@ -115,5 +130,5 @@ export function loadPictures() {
     const pictures = await dispatch(loadPicturesFromDB());
 
     return dispatch(savePicturesToSession(pictures));
-  }
+  };
 }
