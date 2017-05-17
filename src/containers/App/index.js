@@ -31,8 +31,13 @@ App.propTypes = {
   pictures: PropTypes.array.isRequired
 };
 
+const sortByRating = (pictures) =>
+  pictures.sort((a, b) => b.rating - a.rating);
+
 const mapStateToProps = ({ pictures }) => {
-  return { pictures };
+  return {
+    pictures: sortByRating(pictures)
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
