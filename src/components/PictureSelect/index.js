@@ -6,7 +6,7 @@ import './PictureSelect.css';
 const PictureSelect = ({ onSelect }) => (
   <label className="picture-select">
     <div>
-      <span className="picture-select__text">Choose an Image</span>
+      <span className="picture-select__text">Choose Images</span>
       <input className="picture-select__input" type="file" multiple accept="image/*" onChange={(e) => onSelect(e.target.files)} />
     </div>
   </label>
