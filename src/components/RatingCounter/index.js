@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './RatingCounter.css';
+
 const RatingCounter = ({ rating }) => (
-  <div>{rating}</div>
+  <div className="picture-list__counter">{rating}</div>
 );
 
 RatingCounter.propTypes = {

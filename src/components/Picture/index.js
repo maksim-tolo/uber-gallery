@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import RatingCounter from '../RatingCounter';
+import './Picture.css';
 
 const Picture = ({ url, rating, onLeftClick, onRightClick }) => (
-  <div onClick={() => onLeftClick(url)} onContextMenu={(e) => {
+  <div className="picture-list__item" onClick={() => onLeftClick(url)} onContextMenu={(e) => {
     e.preventDefault();
     onRightClick(url);
   }}>
