@@ -2,20 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import PicturesSelect from '../../components/PicturesSelect';
+import PictureSelect from '../../components/PictureSelect';
 import PictureList from '../../components/PictureList';
 import {
   savePictures,
   increasePictureRating,
   decreasePictureRating
 } from './actions';
-import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <PicturesSelect onSelect={this.props.onSelect} />
+      <div>
+        <PictureSelect onSelect={this.props.onSelect} />
         <PictureList pictures={this.props.pictures}
                       onLeftClick={this.props.onLeftClick}
                       onRightClick={this.props.onRightClick} />
