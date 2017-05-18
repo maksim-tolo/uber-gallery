@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -10,18 +10,14 @@ import {
   decreasePictureRating
 } from './actions';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <PictureSelect onSelect={this.props.onSelect} />
-        <PictureList pictures={this.props.pictures}
-                      onLeftClick={this.props.onLeftClick}
-                      onRightClick={this.props.onRightClick} />
-      </div>
-    );
-  }
-}
+const App = ({ onSelect, pictures, onLeftClick, onRightClick }) => (
+  <div>
+    <PictureSelect onSelect={onSelect} />
+    <PictureList pictures={pictures}
+                 onLeftClick={onLeftClick}
+                 onRightClick={onRightClick} />
+  </div>
+);
 
 App.propTypes = {
   onSelect: PropTypes.func.isRequired,

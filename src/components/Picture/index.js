@@ -9,7 +9,7 @@ const Picture = ({ url, rating, onLeftClick, onRightClick }) => (
     e.preventDefault();
     onRightClick(url);
   }}>
-    <img src={url} />
+    <img src={url} alt={`Unable to load ${url}`} />
     <RatingCounter rating={rating} />
   </div>
 );
